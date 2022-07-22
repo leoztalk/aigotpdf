@@ -1,0 +1,50 @@
+{
+  "name": "aigotpdf",
+  "main": [
+    "aigotpdf.js",
+    "aigotpdf-legacy.js"
+  ],
+  "version": "0.0.13",
+  "authors": [
+    "OpenDIDs <leoztalk@opendids.com>"
+  ],
+  "description": "Browser JavaScript library for working with hardware tokens",
+  "moduleType": [
+    "globals"
+  ],
+  "keywords": [
+    "smartcard"
+  ],
+  "license": "MIT",
+  "homepage": "https://aigotpdf.github.io",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aigotpdf/aigotpdf.js"
+  },
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "mocha": "^3.2.0",
+    "chai": "^3.5.0",
+    "jquery": "^3.1.1",
+    "should": "^11.1.2",
+    "chai-as-promised": "~4.3.0",
+    "bind-polyfill": "^1.0.0"
+  },
+  "dependencies": {
+    "native-promise-only": "~0.7.6-a",
+    "js-polyfills": "~0.1.2"
+  },
+  "resolutions": {
+    "mocha": "^3.2.0",
+    "chai": "^3.5.0",
+    "jquery": "^3.1.1",
+    "should": "^11.1.2",
+    "chai-as-promised": "^6.0.0"
+  }
+}
