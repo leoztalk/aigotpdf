@@ -66,7 +66,7 @@
     }
 
     function debug() {
-        window.hwcrypto.debug().then(function (response) {
+        window.aigotpdf.debug().then(function (response) {
             log_text("Debug: " + response);
         });
     }
@@ -86,27 +86,27 @@
         var filter = $("input[name=filter]:checked").val();
         // get signature
         var signtype = $("input[name=signature]:checked").val();
-        if (!window.hwcrypto.use(backend)) {
+        if (!window.aigotpdf.use(backend)) {
             log_text("Selecting backend failed.");
         }
 
         var hash = $("#hashvalue").val();
         log_text("Signing " + hashtype + ": " + hash);
         // debug
-        window.hwcrypto.debug().then(function (response) {
+        window.aigotpdf.debug().then(function (response) {
             log_text("Debug: " + response);
         }, function (err) {
             log_text("debug() failed: " + err);
         });
         // Sign
-        window.hwcrypto.getCertificate({
+        window.aigotpdf.getCertificate({
             lang: lang,
             filter: filter
         }).then(function (response) {
             var cert = response;
             log_text("Using certificate:\n" + hexToPem(cert.hex));
 
-            window.hwcrypto.sign(cert, {
+            window.aigotpdf.sign(cert, {
                 type: hashtype,
                 hex: hash
             }, {
@@ -137,19 +137,19 @@
   <div id="scripton" style="display: none">
    <p>This is a
    <b><script>document.write(window.location.protocol.substring(0, window.location.protocol.length-1).toUpperCase());</script></b> test page for 
-   <a href="hwcrypto.js">hwcrypto.js</a> (<a href="https://github.com/open-eid/hwcrypto.js/wiki">more information</a>)
-   implementing <a href="https://github.com/open-eid/hwcrypto.js/wiki/ModernAPI">API v0.1</a>
+   <a href="aigotpdf.js">aigotpdf.js</a> (<a href="https://github.com/leoztalk/aigotpdf/wiki">more information</a>)
+   implementing <a href="https://github.com/leoztalk/aigotpdf/wiki/ModernAPI">API v0.1</a>
 </p>
 <p>
 Switch to: 
-  <a href="http://open-eid.github.io/hwcrypto.js/sign.html">HTTP</a> | <a href="https://open-eid.github.io/hwcrypto.js/sign.html">HTTPS</a>
+  <a href="https://github.com/leoztalk/aigotpdf/wiki/demo.html">HTTP</a> | <a href="https://github.com/leoztalk/aigotpdf/wiki/demo.html">HTTPS</a>
   | <a href="okbrowser.html">browser with module</a> | <a href="nokbrowser.html">browser without module</a> | <a href="success.html">success</a>  
 </p>
 <hr>
 
    <h1>sign()</h1>
-   <p>You can get old NPAPI plugins from: <a href="https://installer.id.ee">installer.id.ee</a></p>
-   <p><a href="https://chrome.google.com/webstore/detail/ckjefchnfjhjfedoccjbhjpbncimppeg">Install extension from chrome web store</a></p>
+   <p>You can get old NPAPI plugins from: <a href="https://github.com/leoztalk/aigotpdf">installer.id.ee</a></p>
+   <p><a href="https://chrome.google.com/webstore/detail/">Install extension from chrome web store</a></p>
 
    Choose parameters:
    <ul>
@@ -172,12 +172,8 @@ Switch to:
 
    <li><b>LANGUAGE</b>:
      <input type="radio" name="lang" value="en" checked>English
-     <input type="radio" name="lang" value="et">eesti
-     <input type="radio" name="lang" value="ru">русский
-     <input type="radio" name="lang" value="lt">lietuviešu
-     <input type="radio" name="lang" value="lv">latvijas
-     <input type="radio" name="lang" value="fi">suomi
-     <input type="radio" name="lang" value="sw">Swahili
+     <input type="radio" name="lang" value="zh-Hans">Simplified Chinese
+     <input type="radio" name="lang" value="zh-Hant">Traditional Chinese
    </li>
    <li><b>BACKEND</b>:
      <input type="radio" name="backend" value="auto" checked>autodetect
