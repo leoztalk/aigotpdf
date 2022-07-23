@@ -86,9 +86,9 @@
         var filter = $("input[name=filter]:checked").val();
         // get signature
         var signtype = $("input[name=signature]:checked").val();
-        if (!window.aigotpdf.use(backend)) {
-            log_text("Selecting backend failed.");
-        }
+        //if (!window.aigotpdf.use(backend)) {
+        //    log_text("Selecting backend failed.");
+        //}
 
         var hash = $("#hashvalue").val();
         log_text("Signing " + hashtype + ": " + hash);
