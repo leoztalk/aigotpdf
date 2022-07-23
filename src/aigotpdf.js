@@ -1,10 +1,10 @@
-/*! This is aigaotpdf.js 1.0.13 generated on 2022-07-25 */
-/* DO NOT EDIT (use src/aigaotpdf.js) */
+/*! This is aigotpdf.js 1.0.13 generated on 2022-07-25 */
+/* DO NOT EDIT (use src/aigotpdf.js) */
 
-var aigaotpdf = function aigaotpdf() {
+var aigotpdf = function aigotpdf() {
     "use strict";
     var _debug = function(x) {};
-    _debug("aigaotpdf.js activated");
+    _debug("aigotpdf.js activated");
     window.addEventListener = window.addEventListener || window.attachEvent;
     function hasPluginFor(mime) {
         return navigator.mimeTypes && mime in navigator.mimeTypes;
@@ -44,7 +44,7 @@ var aigaotpdf = function aigaotpdf() {
         document.getElementById("pluginLocation" + element).innerHTML = objectTag;
         return document.getElementById(element);
     }
-    var aigotpdf_mime = "application/x-aigaotpdf";
+    var aigotpdf_mime = "application/x-aigotpdf";
     var aigotpdf_chrome = "TokenSigning";
     var USER_CANCEL = "user_cancel";
     var NO_CERTIFICATES = "no_certificates";
@@ -65,8 +65,8 @@ var aigaotpdf = function aigaotpdf() {
     window.addEventListener("load", function(event) {
         probe();
     });
-    function AigaotPdfPlugin() {
-        this._name = "NPAPI/BHO for application/x-aigaotpdf";
+    function aigotpdfPlugin() {
+        this._name = "NPAPI/BHO for application/x-aigotpdf";
         var p = loadPluginFor(aigotpdf_mime);
         var certificate_ids = {};
         var SESeal_ids = {};
@@ -176,7 +176,7 @@ var aigaotpdf = function aigaotpdf() {
             });
         };		
     }
-    function AigaotPdfExtension() {
+    function aigotpdfExtension() {
         this._name = "Chrome native messaging extension";
         var p = null;
         this.check = function() {
@@ -252,7 +252,7 @@ var aigaotpdf = function aigaotpdf() {
                 return resolve(true);
             }
             function tryAigotPdfPlugin() {
-                _testAndUse(AigaotPdfPlugin).then(function(result) {
+                _testAndUse(aigotpdfPlugin).then(function(result) {
                     if (result) {
                         resolve(true);
                     } else {
@@ -265,7 +265,7 @@ var aigaotpdf = function aigaotpdf() {
                 return tryAigotPdfPlugin();
             }
             if (hasExtensionFor(aigotpdf_chrome)) {
-                _testAndUse(AigaotPdfExtension).then(function(result) {
+                _testAndUse(aigotpdfExtension).then(function(result) {
                     if (result) {
                         resolve(true);
                     } else {
@@ -288,9 +288,9 @@ var aigaotpdf = function aigaotpdf() {
                 });
             } else {
                 if (backend === "chrome") {
-                    resolve(_testAndUse(AigaotPdfExtension));
+                    resolve(_testAndUse(aigotpdfExtension));
                 } else if (backend === "npapi") {
-                    resolve(_testAndUse(AigaotPdfPlugin));
+                    resolve(_testAndUse(aigotpdfPlugin));
                 } else {
                     resolve(false);
                 }
@@ -299,7 +299,7 @@ var aigaotpdf = function aigaotpdf() {
     };
     fields.debug = function() {
         return new Promise(function(resolve, reject) {
-            var hwversion = "aigaotpdf.js 1.0.13";
+            var hwversion = "aigotpdf.js 1.0.13";
             _autodetect().then(function(result) {
                 _backend.getVersion().then(function(version) {
                     resolve(hwversion + " with " + _backend._name + " " + version);
