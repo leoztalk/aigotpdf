@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <title>aigotpdf.js</title>
   <script src="gitversion.js"></script>
-  <!--<script src="aigotpdf-legacy.js"></script>-->
+  <script src="aigotpdf-legacy.js"></script>
   <script src="aigotpdf.js"></script>
   <script src="js/dist/jquery.js"></script>
   <script src="hex2base.js"></script>
@@ -84,8 +84,7 @@
         var lang = $("input[name=lang]:checked").val();
         // get filter
         var filter = $("input[name=filter]:checked").val();
-        // get signature
-        var signtype = $("input[name=signature]:checked").val();
+
         if (!window.aigotpdf.use(backend)) {
             log_text("Selecting backend failed.");
         }
@@ -121,6 +120,53 @@
             log_text("getCertificate() failed: " + err);
         });
     }
+	
+    function signfile() {
+        // Clear log
+        document.getElementById('log').innerHTML = '';
+        // Timestamp
+        log_text("signfile() clicked on " + new Date().toUTCString());
+        // Select hash
+        var hashtype = $("input[name=hash]:checked").val();
+        // Set backend if asked
+        var backend = $("input[name=backend]:checked").val()
+            // get language
+        var lang = $("input[name=lang]:checked").val();
+        // get filter
+        var filter = $("input[name=filter]:checked").val();
+		
+        if (!window.aigotpdf.use(backend)) {
+            log_text("Selecting backend failed.");
+        }
+
+        // get filepath
+        var filepath = $("#filepath").val();
+        // get seseal
+        var seseal = $("#seseal").val();
+		// Select seseal
+        var sealtype = $("input[name=seseal]:checked").val();
+		
+        // debug
+        window.aigotpdf.debug().then(function (response) {
+            log_text("Debug: " + response);
+        }, function (err) {
+            log_text("debug() failed: " + err);
+        });
+        // Signfile
+		window.aigotpdf.signfile({
+			type: sealtype,
+			hex: seseal
+		}, filepath, {
+			lang: lang,
+			info: $("#info").val()
+		}).then(function (response) {
+			log_text("Generated signature file:\n" + wrapLine64(response.hex));
+		}, function (err) {
+			log_text("signfile() failed: " + err);
+		});
+
+    }
+	
 </script>
 </head>
 <body>
@@ -180,13 +226,19 @@ Switch to:
      <input type="radio" name="backend" value="npapi">legacy NPAPI
      <input type="radio" name="backend" value="chrome">chrome-token-signing
    </li>
-   <li><b>SIGNATURE</b>:
-     <input type="radio" name="signature" value="raw" checked>RAW
-     <input type="radio" name="signature" value="jwt">JWT
+     <li><b>FILEPATH</b>:
+	 <input type="file" id="file" name="filepath" accept=".pdf">
+   </li> 
    </li>
+     <li><b>SESEAL</b>:
+	 <input type="radio" name="seseal" value="SES">SESeal
+     <input type="radio" name="seseal" value="CMS-GIF">cms-gif
+	 <textarea id="seseal" rows="3"></textarea>
+   </li>    
    </ul>
    <p><button id="click1" onclick='sign();'>Click here to invoke <b>sign()</b></button></p>
-   <p><button id="click2" onclick='debug();'>Brief debug()</button></p>
+   <p><button id="click2" onclick='signfile();'>Click here to invoke <b>signfile()</b></button></p>
+   <p><button id="click3" onclick='debug();'>Brief debug()</button></p>
 
 
    <hr>
