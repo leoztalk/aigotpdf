@@ -224,6 +224,7 @@ Switch to:
      <input type="radio" name="backend" value="npapi">legacy NPAPI
      <input type="radio" name="backend" value="chrome">chrome-token-signing
    </li>
+   <p><button id="click1" onclick='sign();'>Click here to invoke <b>sign()</b></button></p>
    <br/>
    <li><b>FILEPATH</b>:
    <input type="file" id="file" name="filepath" accept=".pdf">
@@ -235,8 +236,8 @@ Switch to:
      <textarea id="seseal" rows="3"></textarea>
    </li>    
    </ul>
-   <p><button id="click1" onclick='sign();'>Click here to invoke <b>sign()</b></button></p>
    <p><button id="click2" onclick='signfile();'>Click here to invoke <b>signfile()</b></button></p>
+   <br/>
    <p><button id="click3" onclick='debug();'>Brief debug()</button></p>
 
 
