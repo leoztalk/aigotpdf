@@ -187,20 +187,17 @@
   <script>
     $(document).ready(function () {
         $("#scripton").show();
-		
-		//set hash data		
+	//set hash data		
         $("input[type=radio][name=hash]").change(function () {
             $("#hashvalue").val(hashes[$("input[name=hash]:checked").val()]);
         });
         $("#hashvalue").val(hashes[$("input[name=hash]:checked").val()]);
-		
-		//set seal data
+	//set seal data
         $("input[type=radio][name=seseal]").change(function () {
             $("#sesealvalue").val(seseales[$("input[name=seseal]:checked").val()]);
         });
         $("#sesealvalue").val(seseales[$("input[name=seseal]:checked").val()]);	
-		
-		//set position data		
+	//set position data		
         $("input[type=radio][name=position]").change(function () {
             $("#positionvalue").val(positiones[$("input[name=position]:checked").val()]);
         });
