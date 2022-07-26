@@ -69,7 +69,7 @@ var aigotpdf = function aigotpdf() {
         this._name = "NPAPI/BHO for application/x-aigotpdf";
         var p = loadPluginFor(aigotpdf_mime);
         var certificate_ids = {};
-        var SESeal_ids = {};
+        var seseal_ids = {};
         function code2str(err) {
             _debug("Error: " + err + " with: " + p.errorMessage);
             switch (parseInt(err)) {
@@ -133,7 +133,7 @@ var aigotpdf = function aigotpdf() {
         };
         this.sign = function(cert, hash, options) {
             return new Promise(function(resolve, reject) {
-                var cid = SESeal_ids[cert.hex];
+                var cid = certificate_ids[cert.hex];
                 if (cid) {
                     try {
                         var language = options.lang || "en";
@@ -153,15 +153,15 @@ var aigotpdf = function aigotpdf() {
                 }
             });
         };
-        this.signSESeal = function(seseal, hash, options) {
+        this.signFile = function(seseal, position, options) {
             return new Promise(function(resolve, reject) {
-                var sid = certificate_ids[seseal.hex];
+                var sid = seseal_ids[seseal.hex];
                 if (sid) {
                     try {
                         var language = options.lang || "en";
                         var info = options.info || "";
                         var ver = p.version.split(".");
-                        var v = ver[0] >= 3 && ver[1] >= 13 ? p.signSESeal(sid, hash.hex, language, info) : p.signSESeal(sid, hash.hex, language);
+                        var v = ver[0] >= 3 && ver[1] >= 13 ? p.signFile(sid, position, language, info) : p.signFile(sid, position, language);
                         resolve({
                             hex: v
                         });
@@ -201,8 +201,8 @@ var aigotpdf = function aigotpdf() {
 		this.sign = function(cert, hash, options) {
             return p.sign(cert, hash, options);
         };
-		this.signSESeal = function(seseal, hash, options) {
-            return p.signSESeal(seseal, hash, options);
+		this.signFile = function(seseal, position, options) {
+            return p.signFile(seseal, position, options);
         };		
     }
     function NoBackend() {
@@ -221,7 +221,7 @@ var aigotpdf = function aigotpdf() {
         this.sign = function() {
             return Promise.reject(new Error(NO_IMPLEMENTATION));
         };
-        this.signSESeal = function() {
+        this.signFile = function() {
             return Promise.reject(new Error(NO_IMPLEMENTATION));
         };
 		}
@@ -348,22 +348,24 @@ var aigotpdf = function aigotpdf() {
             });
         });
     };
-    fields.signSESeal = function(seseal, path, options) {
+    fields.signFile = function(seseal, position, options) {
         if (arguments.length < 2) return Promise.reject(new Error(INVALID_ARGUMENT));
         if (options && !options.lang) {
             options.lang = "en";
         }
-        if (!hash.type || !hash.value && !hash.hex) return Promise.reject(new Error(INVALID_ARGUMENT));
-        if (hash.hex && !hash.value) {
-            _debug("DEPRECATED: hash.hex as argument to signSESeal() is deprecated, use hash.value instead");
-            hash.value = _hex2array(hash.hex);
+		
+		if (!seseal.type || !seseal.value && !seseal.hex) return Promise.reject(new Error(INVALID_ARGUMENT));
+		
+        if (seseal.hex && !seseal.value) {
+            _debug("DEPRECATED: seseal.hex as argument to signFile() is deprecated, use seseal.value instead");
+            seseal.value = _hex2array(seseal.hex);
         }
-        if (hash.value && !hash.hex) hash.hex = _array2hex(hash.value);
+
         return _autodetect().then(function(result) {
             if (location.protocol !== "https:" && location.protocol !== "file:") {
                 return Promise.reject(new Error(NOT_ALLOWED));
             }
-            return _backend.signSESeal(seseal, hash, options).then(function(signature) {
+            return _backend.signFile(seseal, position, options).then(function(signature) {
                 if (signature.hex && !signature.value) signature.value = _hex2array(signature.hex);
                 return signature;
             });
