@@ -8,6 +8,7 @@
   <script src="aigotpdf.js"></script>
   <script src="js/dist/jquery.js"></script>
   <script src="hex2base.js"></script>
+  <script src="test/testdata.js"></script>
   <style type="text/css">
     body {font-family: Times New Roman, Sans-serif;}
   </style>
@@ -142,7 +143,7 @@
         // get filepath
         var filepath = $("#filepath").val();
         // get seseal
-        var seseal = $("#seseal").val();
+        var seseal = $("#sesealvalue").val();
 		// Select seseal
         var sealtype = $("input[name=seseal]:checked").val();
 		
@@ -178,6 +179,11 @@
             $("#hashvalue").val(hashes[$("input[name=hash]:checked").val()]);
         });
         $("#hashvalue").val(hashes[$("input[name=hash]:checked").val()]);
+		
+        $("input[type=radio][name=seseal]").change(function () {
+            $("#sesealvalue").val(hashes[$("input[name=seseal]:checked").val()]);
+        });
+        $("#sesealvalue").val(hashes[$("input[name=seseal]:checked").val()]);		
     });
   </script>
   <div id="scripton" style="display: none">
@@ -235,7 +241,7 @@ Switch to:
      <input type="radio" name="seseal" value="SES" checked>SESeal
      <input type="radio" name="seseal" value="CMS-GIF">cms-gif
      <br/>
-     <textarea id="seseal" rows="3"></textarea>
+     <textarea id="sesealvalue" rows="3"></textarea>
    </li>    
    <p><button id="click2" onclick='signfile();'>Click here to invoke <b>signfile()</b></button></p>
    <br/>
