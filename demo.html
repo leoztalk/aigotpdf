@@ -22,6 +22,10 @@
     hashes['SHA-512'] = 'c793dc32d969cd4982a1d6e630de5aa0ebcd37e3b8bd0095f383a839582b080b9fe2d00098844bd303b8736ca1000344c5128ea38584bbed2d77a3968c7cdd71';
     hashes['SHA-192'] = 'ad41e82bcff23839dc0d9683d46fbae0be3dfcbbb1b49c70';
 
+    var positiones = {};
+    positiones['keywords'] = '盖章';
+    positiones['rect'] = '115.53 442.43 234.53 561.43';
+
     function base64url(data) {
         return btoa(data).replace(/\+/g, '-').replace(/\//g, '_').replace(/\=+$/m, '');
     }
@@ -140,14 +144,16 @@
             log_text("Selecting backend failed.");
         }
 
-        // get filepath
-        var filepath = $("#filepath").val();
-	    log_text("debug() filepath: " + filepath);
-		
         // get seseal
         var seseal = $("#sesealvalue").val();
-	// Select seseal
+        // Select seseal type
         var sealtype = $("input[name=seseal]:checked").val();
+		
+        // get position
+        var position = $("#positionvalue").val();		
+        // Select position type
+        var positiontype = $("input[name=position]:checked").val();
+		
 		
         // debug
         window.aigotpdf.debug().then(function (response) {
@@ -160,7 +166,10 @@
 		window.aigotpdf.signfile({
 			type: sealtype,
 			hex: seseal
-		}, filepath, {
+		}, {
+			type: positiontype,
+			hex: position		
+		}, {
 			lang: lang,
 			info: $("#info").val()
 		}).then(function (response) {
@@ -178,15 +187,24 @@
   <script>
     $(document).ready(function () {
         $("#scripton").show();
+		
+		//set hash data		
         $("input[type=radio][name=hash]").change(function () {
             $("#hashvalue").val(hashes[$("input[name=hash]:checked").val()]);
         });
         $("#hashvalue").val(hashes[$("input[name=hash]:checked").val()]);
 		
+		//set seal data
         $("input[type=radio][name=seseal]").change(function () {
             $("#sesealvalue").val(seseales[$("input[name=seseal]:checked").val()]);
         });
-        $("#sesealvalue").val(seseales[$("input[name=seseal]:checked").val()]);		
+        $("#sesealvalue").val(seseales[$("input[name=seseal]:checked").val()]);	
+		
+		//set position data		
+        $("input[type=radio][name=position]").change(function () {
+            $("#positionvalue").val(seseales[$("input[name=position]:checked").val()]);
+        });
+        $("#positionvalue").val(seseales[$("input[name=position]:checked").val()]);				
     });
   </script>
   <div id="scripton" style="display: none">
@@ -237,15 +255,18 @@ Switch to:
    </li>
    <p><button id="click1" onclick='sign();'>Click here to invoke <b>sign()</b></button></p>
    <br/>
-   <li><b>FILEPATH</b>:
-   <input type="file" id="filepath" name="filepath" accept=".pdf">
-   </li>
    <li><b>SESEAL</b>:
      <input type="radio" name="seseal" value="SES" checked>SESeal
      <input type="radio" name="seseal" value="CMS-GIF">cms-gif
      <br/>
      <textarea id="sesealvalue" rows="3"></textarea>
-   </li>    
+   </li>
+   <li><b>POSITION</b>:
+     <input type="radio" name="position" value="keywords">keywords
+     <input type="radio" name="position" value="rect">rect
+     <br/>
+     <input id="positionvalue" type="text" size="200"><br />
+   </li>
    <p><button id="click2" onclick='signfile();'>Click here to invoke <b>signfile()</b></button></p>
    <br/>
    </ul>
