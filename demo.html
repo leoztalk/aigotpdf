@@ -142,8 +142,8 @@
 
         // get filepath
         var filepath = $("#filepath").val();
-	log_text("debug() info: " + filepath);    
-	    
+		log_text("filepath: " + filepath);
+		
         // get seseal
         var seseal = $("#sesealvalue").val();
 		// Select seseal
@@ -155,6 +155,7 @@
         }, function (err) {
             log_text("debug() failed: " + err);
         });
+		
         // Signfile
 		window.aigotpdf.signfile({
 			type: sealtype,
@@ -237,7 +238,7 @@ Switch to:
    <p><button id="click1" onclick='sign();'>Click here to invoke <b>sign()</b></button></p>
    <br/>
    <li><b>FILEPATH</b>:
-   <input type="file" id="file" name="filepath" accept=".pdf">
+   <input type="file" id="filepath" name="filepath" accept=".pdf">
    </li>
    <li><b>SESEAL</b>:
      <input type="radio" name="seseal" value="SES" checked>SESeal
