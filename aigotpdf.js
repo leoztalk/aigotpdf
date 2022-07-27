@@ -177,7 +177,7 @@ var aigotpdf = function aigotpdf() {
         };		
     }
     function aigotpdfExtension() {
-        this._name = "AigotPDF Chrome native messaging extension";
+        this._name = "Chrome native messaging extension";
         var p = null;
         this.check = function() {
             return new Promise(function(resolve, reject) {
