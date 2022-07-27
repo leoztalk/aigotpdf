@@ -205,8 +205,8 @@
             log_text("debug() failed: " + err);
         });
 		
-        // Signfile
-		window.aigotpdf.signfile({
+        // signFile
+		window.aigotpdf.signFile({
 			type: sealtype,
 			hex: seseal
 		}, {
@@ -218,7 +218,7 @@
 		}).then(function (response) {
 			log_text("Generated signature file:\n" + wrapLine64(response.hex));
 		}, function (err) {
-			log_text("signfile() failed: " + err);
+			log_text("signFile() failed: " + err);
 		});
 
     }
