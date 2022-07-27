@@ -353,14 +353,16 @@ var aigotpdf = function aigotpdf() {
         if (options && !options.lang) {
             options.lang = "en";
         }
-		
 		if (!seseal.type || !seseal.value && !seseal.hex) return Promise.reject(new Error(INVALID_ARGUMENT));
-		
         if (seseal.hex && !seseal.value) {
             _debug("DEPRECATED: seseal.hex as argument to signFile() is deprecated, use seseal.value instead");
             seseal.value = _hex2array(seseal.hex);
         }
-
+		if (!position.type || !position.value && !position.hex) return Promise.reject(new Error(INVALID_ARGUMENT));
+        if (position.hex && !position.value) {
+            _debug("DEPRECATED: position.hex as argument to signFile() is deprecated, use position.value instead");
+            position.value = _hex2array(position.hex);
+        }
         return _autodetect().then(function(result) {
             if (location.protocol !== "https:" && location.protocol !== "file:") {
                 return Promise.reject(new Error(NOT_ALLOWED));
