@@ -143,7 +143,6 @@
         if (!window.aigotpdf.use(backend)) {
             log_text("Selecting backend failed.");
         }
-
         // get seseal
         var seseal = $("#sesealvalue").val();
         // Select seseal type
@@ -153,7 +152,6 @@
         var position = $("#positionvalue").val();		
         // Select position type
         var positiontype = $("input[name=position]:checked").val();
-		
 		
         // debug
         window.aigotpdf.debug().then(function (response) {
@@ -187,22 +185,35 @@
   <script>
     $(document).ready(function () {
         $("#scripton").show();
-	//set hash data		
+		
+		//set hash data		
         $("input[type=radio][name=hash]").change(function () {
             $("#hashvalue").val(hashes[$("input[name=hash]:checked").val()]);
         });
         $("#hashvalue").val(hashes[$("input[name=hash]:checked").val()]);
-	//set seal data
+		
+		//set seal data
         $("input[type=radio][name=seseal]").change(function () {
             $("#sesealvalue").val(seseales[$("input[name=seseal]:checked").val()]);
         });
         $("#sesealvalue").val(seseales[$("input[name=seseal]:checked").val()]);	
-	//set position data		
+		
+		//set position data		
         $("input[type=radio][name=position]").change(function () {
             $("#positionvalue").val(positiones[$("input[name=position]:checked").val()]);
         });
         $("#positionvalue").val(positiones[$("input[name=position]:checked").val()]);				
     });
+	
+	
+	if (!document.querySelector("script[data-name='TokenSigning']")) {
+		var s = document.createElement("script");
+		s.type = "text/javascript";
+		s.dataset.name = "TokenSigning";
+		s.innerHTML = "(" + pageScript + ")();";
+
+		(document.head || document.documentElement).appendChild(s);
+	}
   </script>
   <div id="scripton" style="display: none">
    <p>This is a
@@ -219,7 +230,7 @@ Switch to:
 
    <h1>sign()</h1>
    <!--
-      <p>You can get old NPAPI plugins from: <a href="https://github.com/leoztalk/aigotpdf">installer.aigotpdf</a></p>
+   <p>You can get old NPAPI plugins from: <a href="https://github.com/leoztalk/aigotpdf">installer.aigotpdf</a></p>
    -->
    <p><a href="https://chrome.google.com/webstore/detail/">Install extension from chrome web store</a></p>
 
