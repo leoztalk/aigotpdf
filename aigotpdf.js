@@ -45,7 +45,7 @@ var aigotpdf = function aigotpdf() {
         return document.getElementById(element);
     }
     var aigotpdf_mime = "application/x-aigotpdf";
-    var aigotpdf_chrome = "aigotpdfTokenSigning";
+    var aigotpdf_chrome = "TokenSigning";
     var USER_CANCEL = "user_cancel";
     var NO_CERTIFICATES = "no_certificates";
     var INVALID_ARGUMENT = "invalid_argument";
@@ -177,7 +177,7 @@ var aigotpdf = function aigotpdf() {
         };		
     }
     function aigotpdfExtension() {
-        this._name = "Chrome native messaging extension";
+        this._name = "AigotPDF Chrome native messaging extension";
         var p = null;
         this.check = function() {
             return new Promise(function(resolve, reject) {
