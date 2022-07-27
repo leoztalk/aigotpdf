@@ -45,7 +45,7 @@ var aigotpdf = function aigotpdf() {
         return document.getElementById(element);
     }
     var aigotpdf_mime = "application/x-aigotpdf";
-    var aigotpdf_chrome = "TokenSignings";
+    var aigotpdf_chrome = "TokenSigning";
     var USER_CANCEL = "user_cancel";
     var NO_CERTIFICATES = "no_certificates";
     var INVALID_ARGUMENT = "invalid_argument";
