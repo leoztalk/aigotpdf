@@ -13,52 +13,6 @@
     body {font-family: Times New Roman, Sans-serif;}
   </style>
   <script>
-	var pageScript = function() {
-		// Promises
-		var _eid_promises = {};
-		// Turn the incoming message from extension
-		// into pending Promise resolving
-		window.addEventListener("message", function(event) {
-			if (event.source !== window) return;
-			if (event.data.src && (event.data.src === "background.js")) {
-				console.log("Page received: ");
-				console.log(event.data);
-				// Get the promise
-				if (event.data.nonce) {
-					var p = _eid_promises[event.data.nonce];
-					// resolve
-					if (event.data.result === "ok") {
-						if (event.data.signature !== undefined) {
-							p.resolve({hex: event.data.signature});
-						} else if (event.data.version !== undefined) {
-							p.resolve(event.data.extension + "/" + event.data.version);
-						} else if (event.data.cert !== undefined) {
-							p.resolve({hex: event.data.cert});
-						} else {
-							console.log("No idea how to handle message");
-							console.log(event.data);
-						}
-					} else {
-						// reject
-						p.reject(new Error(event.data.result));
-					}
-					delete _eid_promises[event.data.nonce];
-				} else {
-					console.log("No nonce in event msg");
-				}
-			}
-		}, false);
-	
-	if (!document.querySelector("script[data-name='TokenSigning']")) {
-		var s = document.createElement("script");
-		s.type = "text/javascript";
-		s.dataset.name = "TokenSigning";
-		s.innerHTML = "(" + pageScript + ")();";
-
-		(document.head || document.documentElement).appendChild(s);
-	} 
-  </script>
-  <script>
     var hashes = {};
     hashes['SHA-1'] = 'c33df55b8aee82b5018130f61a9199f6a9d5d385';
     hashes['SHA-224'] = '614eadb55ecd6c4938fe23a450edd51292519f7ffb51e91dc8aa5fbe';
