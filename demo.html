@@ -139,9 +139,9 @@
         // get filter
         var filter = $("input[name=filter]:checked").val();
 		
-        if (!window.aigotpdf.use(backend)) {
-            log_text("Selecting backend failed.");
-        }
+        //if (!window.aigotpdf.use(backend)) {
+        //    log_text("Selecting backend failed.");
+        //}
         // get seseal
         var seseal = $("#sesealvalue").val();
         // Select seseal type
@@ -153,14 +153,14 @@
         var positiontype = $("input[name=position]:checked").val();
 		
         // debug
-        window.aigotpdf.debug().then(function (response) {
-            log_text("Debug: " + response);
-        }, function (err) {
-            log_text("debug() failed: " + err);
-        });
+        //window.aigotpdf.debug().then(function (response) {
+        //    log_text("Debug: " + response);
+        //}, function (err) {
+        //    log_text("debug() failed: " + err);
+        //});
 		
         // signFile
-		window.aigotpdf.signFile({
+	window.aigotpdf.signFile({
 			type: sealtype,
 			hex: seseal
 		}, {
