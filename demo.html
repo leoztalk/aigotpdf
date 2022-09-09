@@ -76,7 +76,7 @@
     }
 
     function getcert() {
-	    // Clear log
+	// Clear log
         document.getElementById('log').innerHTML = '';
         // Timestamp
         log_text("getcert() clicked on " + new Date().toUTCString());
@@ -150,7 +150,7 @@
         var hashtype = $("input[name=hash]:checked").val();
         // Set backend if asked
         var backend = $("input[name=backend]:checked").val()
-            // get language
+        // get language
         var lang = $("input[name=lang]:checked").val();
         // get filter
         var filter = $("input[name=filter]:checked").val();
@@ -256,7 +256,7 @@ Switch to:
      <input type="radio" name="filter" value="SIGN" checked>SIGN
      <input type="radio" name="filter" value="AUTH">AUTH
 	 <br/>
-	 <textarea id="cert" rows="3"></textarea>
+	 <textarea id="certvalue" rows="3"></textarea>
    </li>
    <p><button id="click1" onclick='getcert();'>Click here to invoke <b>getcert()</b></button></p>
    <li><b>LANGUAGE</b>:
