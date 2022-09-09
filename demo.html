@@ -76,6 +76,15 @@
     }
 
     function getcert() {
+	    // Clear log
+        document.getElementById('log').innerHTML = '';
+        // Timestamp
+        log_text("getcert() clicked on " + new Date().toUTCString());
+        // get language
+        var lang = $("input[name=lang]:checked").val();
+        // get filter
+        var filter = $("input[name=filter]:checked").val();
+
         window.aigotpdf.getCertificate({
             lang: lang,
             filter: filter
