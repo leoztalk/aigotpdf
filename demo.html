@@ -75,6 +75,19 @@
         });
     }
 
+    function getcert() {
+        window.aigotpdf.getCertificate({
+            lang: lang,
+            filter: filter
+        }).then(function (response) {
+            var cert = response;
+            log_text("Using certificate:\n" + hexToPem(cert.hex));
+			 $("#cert").val() = hexToPem(cert.hex);
+        }, function (err) {
+            log_text("getCertificate() failed: " + err);
+        });	
+	}
+
     function sign() {
         // Clear log
         document.getElementById('log').innerHTML = '';
@@ -240,7 +253,10 @@ Switch to:
    <li><b>CERTIFICATE</b>:
      <input type="radio" name="filter" value="SIGN" checked>SIGN
      <input type="radio" name="filter" value="AUTH">AUTH
+	 <br/>
+	 <textarea id="cert" rows="3"></textarea>
    </li>
+   <p><button id="click1" onclick='getcert();'>Click here to invoke <b>getcert()</b></button></p>
    <li><b>LANGUAGE</b>:
      <input type="radio" name="lang" value="en" checked>English
      <input type="radio" name="lang" value="zh-Hans">Simplified Chinese
