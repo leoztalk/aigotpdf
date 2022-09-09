@@ -91,8 +91,7 @@
         }).then(function (response) {
             var cert = response;
             log_text("Using certificate:\n" + hexToPem(cert.hex));
-			 //$("#cert").val() = hexToPem(cert.hex);
-			 document.getElementById('cert').appendChild("121212");
+			document.getElementById("cert").innerHTML = hexToPem(cert.hex);
         }, function (err) {
             log_text("getCertificate() failed: " + err);
         });	
