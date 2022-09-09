@@ -91,7 +91,7 @@
         }).then(function (response) {
             var cert = response;
             log_text("Using certificate:\n" + hexToPem(cert.hex));
-			document.getElementById("cert").innerHTML = hexToPem(cert.hex);
+			document.getElementById("certvalue").innerHTML = hexToBase64(cert.hex);
         }, function (err) {
             log_text("getCertificate() failed: " + err);
         });	
@@ -117,6 +117,10 @@
 
         var hash = $("#hashvalue").val();
         log_text("Signing " + hashtype + ": " + hash);
+	    
+        var cert = $("#certvalue").val();
+        log_text("certvalue: " + cert);
+	    
         // debug
         window.aigotpdf.debug().then(function (response) {
             log_text("Debug: " + response);
@@ -124,28 +128,17 @@
             log_text("debug() failed: " + err);
         });
         // Sign
-        //window.aigotpdf.getCertificate({
-        //    lang: lang,
-        //    filter: filter
-        //}).then(function (response) {
-        //    var cert = response;
-        //    log_text("Using certificate:\n" + hexToPem(cert.hex));
-
-            //window.aigotpdf.sign(cert, {
-            window.aigotpdf.sign(NULL, {
-                type: hashtype,
-                hex: hash
-            }, {
-                lang: lang,
-                info: $("#info").val()
-            }).then(function (response) {
-                log_text("Generated signature:\n" + wrapLine64(response.hex));
-            }, function (err) {
-                log_text("sign() failed: " + err);
-            });
-        //}, function (err) {
-        //    log_text("getCertificate() failed: " + err);
-        //});
+	window.aigotpdf.sign(cert, {
+	    type: hashtype,
+	    hex: hash
+   	}, {
+	    lang: lang,
+	    info: $("#info").val()
+    	}).then(function (response) {
+	    log_text("Generated signature:\n" + wrapLine64(response.hex));
+    	}, function (err) {
+	    log_text("sign() failed: " + err);
+    	});
     }
 	
     function signfile() {
