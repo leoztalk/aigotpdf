@@ -102,14 +102,15 @@
             log_text("debug() failed: " + err);
         });
         // Sign
-        window.aigotpdf.getCertificate({
-            lang: lang,
-            filter: filter
-        }).then(function (response) {
-            var cert = response;
-            log_text("Using certificate:\n" + hexToPem(cert.hex));
+        //window.aigotpdf.getCertificate({
+        //    lang: lang,
+        //    filter: filter
+        //}).then(function (response) {
+        //    var cert = response;
+        //    log_text("Using certificate:\n" + hexToPem(cert.hex));
 
-            window.aigotpdf.sign(cert, {
+            //window.aigotpdf.sign(cert, {
+            window.aigotpdf.sign(NULL, {
                 type: hashtype,
                 hex: hash
             }, {
@@ -120,9 +121,9 @@
             }, function (err) {
                 log_text("sign() failed: " + err);
             });
-        }, function (err) {
-            log_text("getCertificate() failed: " + err);
-        });
+        //}, function (err) {
+        //    log_text("getCertificate() failed: " + err);
+        //});
     }
 	
     function signfile() {
