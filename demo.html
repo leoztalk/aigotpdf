@@ -74,15 +74,6 @@
             log_text("Debug: " + response);
         });
     }
-
-    function checkextension(){
-    	window.aigotpdf.check().then(function (response){
-	     log_text("Check: " + response);
-	});
-	window.aigotpdf.getversion().then(function (response){
-	     log_text("Version: " + response);
-	}); 
-    }
 	  
     function getcert() {
 	// Clear log
@@ -200,7 +191,7 @@
 <body>
   <noscript><h1>Plase enable JavaScript!</h1></noscript>
   <script>
-    checkextension();
+    aigotpdfExtension();
 	  
     $(document).ready(function () {
         $("#scripton").show();
