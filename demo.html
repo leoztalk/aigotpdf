@@ -168,13 +168,6 @@
         // Select position type
         var positiontype = $("input[name=position]:checked").val();
 		
-        // debug
-        //window.aigotpdf.debug().then(function (response) {
-        //    log_text("Debug: " + response);
-        //}, function (err) {
-        //    log_text("debug() failed: " + err);
-        //});
-		
         // signFile
 	window.aigotpdf.signFile({
 			type: sealtype,
@@ -198,9 +191,11 @@
 <body>
   <noscript><h1>Plase enable JavaScript!</h1></noscript>
   <script>
+    debug();
+	  
     $(document).ready(function () {
         $("#scripton").show();
-		
+   
 		//set hash data		
         $("input[type=radio][name=hash]").change(function () {
             $("#hashvalue").val(hashes[$("input[name=hash]:checked").val()]);
