@@ -95,11 +95,10 @@
        window.aigotpdf.debug().then(function (response) {
 	    if(response.includes(version)){
 	       log_text("version: " + version);
-	       getversion();
 	    }else{
 		log_text('<a href=\"https://chrome.google.com/webstore/detail/aigotpdf-%E7%94%B5%E5%AD%90%E5%8D%B0%E7%AB%A0/beiingpgjagdjobbpkkilgkhmgceemde?hl=zh-CN\" class=\"button\">安装AigotPDF</a>');
 	    }
-	       
+	    getversion();  
         });
     }
 	  
