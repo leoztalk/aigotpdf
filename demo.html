@@ -79,8 +79,12 @@
        var c;
        var version = "0.0.0.8";
        window.aigotpdf.debug().then(function (response) {
-            if(response.test(version));
+            if(response.test(version)){
 	       log_text("version: " + version);
+	    }else{
+	       log_text("check extension error. ");
+	    }
+	       
         });
     }
 	  
