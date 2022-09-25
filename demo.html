@@ -11,6 +11,18 @@
   <script src="test/testdata.js"></script>
   <style type="text/css">
     body {font-family: Times New Roman, Sans-serif;}
+   .button {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
   </style>
   <script>
     var hashes = {};
@@ -83,7 +95,7 @@
 	    if(response.includes(version)){
 	       log_text("version: " + version);
 	    }else{
-		log_text("<a href='https://chrome.google.com/webstore/detail/aigotpdf-%E7%94%B5%E5%AD%90%E5%8D%B0%E7%AB%A0/beiingpgjagdjobbpkkilgkhmgceemde?hl=zh-TW'>AigotPDF Extension</a>");
+		log_text("<a href='https://chrome.google.com/webstore/detail/aigotpdf-%E7%94%B5%E5%AD%90%E5%8D%B0%E7%AB%A0/beiingpgjagdjobbpkkilgkhmgceemde?hl=zh-TW' class="button">AigotPDF Extension</a>");
 	    }
 	       
         });
