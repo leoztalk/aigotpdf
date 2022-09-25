@@ -89,10 +89,10 @@
         });
     }
 
-    function checkextension({type: VERSION}){
+    function checkextension(){
        var c;
        var version = "0.0.0.8";
-       window.aigotpdf.debug().then(function (response) {
+       window.aigotpdf.debug({type: VERSION}).then(function (response) {
 	    if(response.includes(version)){
 	       log_text("version: " + version);
 	    }else{
