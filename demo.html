@@ -204,12 +204,9 @@
 <body>
   <noscript><h1>Plase enable JavaScript!</h1></noscript>
   <script>
-
-	  
+  
     $(document).ready(function () {
         $("#scripton").show();
-	    
-       checkextension();
 	    
 		//set hash data		
         $("input[type=radio][name=hash]").change(function () {
@@ -229,6 +226,8 @@
         });
         $("#positionvalue").val(positiones[$("input[name=position]:checked").val()]);				
     });
+	  
+       checkextension();	  
   </script>
 
   <div id="scripton" style="display: none">
