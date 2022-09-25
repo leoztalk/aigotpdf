@@ -87,7 +87,6 @@
         window.aigotpdf.debug().then(function (response) {
             log_text("Debug: " + response);
         });
-	    checkextension();
     }
 
     function checkextension(){
@@ -221,6 +220,8 @@
   <script>
       
     $(document).ready(function () {
+	checkextension();   
+	    
         $("#scripton").show();
 	    
 		//set hash data		
