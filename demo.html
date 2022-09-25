@@ -200,11 +200,13 @@
 <body>
   <noscript><h1>Plase enable JavaScript!</h1></noscript>
   <script>
-    checkextension();
+
 	  
     $(document).ready(function () {
         $("#scripton").show();
-   
+	    
+       checkextension();
+	    
 		//set hash data		
         $("input[type=radio][name=hash]").change(function () {
             $("#hashvalue").val(hashes[$("input[name=hash]:checked").val()]);
