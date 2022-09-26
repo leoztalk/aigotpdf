@@ -103,7 +103,7 @@
     }
 	  
     function getversion(){
-       if (!window.hwcrypto.use(backend)) {
+       if (!window.aigotpdf.use(backend)) {
           log_text("Selecting backend failed.");
        }
        window.aigotpdf.getVersion().then(function (response) {
