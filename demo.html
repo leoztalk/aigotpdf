@@ -103,6 +103,7 @@
     }
 	  
     function getversion(){
+        var backend = $("input[name=backend]:checked").val()
        if (!window.aigotpdf.use(backend)) {
           log_text("Selecting backend failed.");
        }
