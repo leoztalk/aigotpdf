@@ -87,10 +87,10 @@
         window.aigotpdf.debug().then(function (response) {
             log_text("Debug: " + response);
         });
+	    	    getversion();  
     }
 
     function checkextension(){
-       var c;
        var version = "0.0.0.8";
        window.aigotpdf.debug().then(function (response) {
 	    if(response.includes(version)){
@@ -98,15 +98,10 @@
 	    }else{
 		log_text('<a href=\"https://chrome.google.com/webstore/detail/aigotpdf-%E7%94%B5%E5%AD%90%E5%8D%B0%E7%AB%A0/beiingpgjagdjobbpkkilgkhmgceemde?hl=zh-CN\" class=\"button\">安装AigotPDF</a>');
 	    }
-	    getversion();  
         });
     }
 	  
     function getversion(){
-        var backend = $("input[name=backend]:checked").val()
-       if (!window.aigotpdf.use(backend)) {
-          log_text("Selecting backend failed.");
-       }
        window.aigotpdf.getVersion().then(function (response) {
             log_text("Version:\n" + response);
         }, function (err) {
