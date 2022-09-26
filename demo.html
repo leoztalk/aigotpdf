@@ -93,7 +93,7 @@
        var version = "0.0.0.8";
        var onlyextension = "aigotpdf.js 1.0.13 with failing backend AigotPDF Chrome native messaging extension";
        var noextension = "aigotpdf.js 1.0.13 with failing backend No implementation";
-       window.aigotpdf.getVersion().then(function (response) {
+       window.aigotpdf.debug().then(function (response) {
 	    if(response.includes(version)){
 	       log_text("version: " + version);
 	    }else if(response==onlyextension){
@@ -103,14 +103,6 @@
 	    }
         });
     }
-	  
-    function getver(){
-       window.aigotpdf.getVersion().then(function (response) {
-            log_text("Version:\n" + response);
-        }, function (err) {
-            log_text("getVersion() failed: " + err);
-        });
-    }	  
 	  
     function getcert() {
 	// Clear log
