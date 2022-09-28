@@ -114,8 +114,7 @@
         var filter = $("input[name=filter]:checked").val();
 
         window.aigotpdf.getCertificate({
-            lang: lang,
-            filter: filter
+            lang: lang
         }).then(function (response) {
             var cert = response;
             log_text("Using certificate:\n" + hexToPem(cert.hex));
@@ -149,12 +148,6 @@
         var cert = $("#certvalue").val();
         log_text("certvalue: " + cert);
 	    
-        // debug
-        window.aigotpdf.debug().then(function (response) {
-            log_text("Debug: " + response);
-        }, function (err) {
-            log_text("debug() failed: " + err);
-        });
         // Sign
 	window.aigotpdf.sign(cert, {
 	    type: hashtype,
