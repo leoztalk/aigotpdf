@@ -96,7 +96,7 @@
 	    if(response.includes(version)){
 	       log_text("version: " + version);
 	    }else if(response==onlyextension){
-		log_text('<a href=\"https://chrome.google.com/webstore/detail/aigotpdf-%E7%94%B5%E5%AD%90%E5%8D%B0%E7%AB%A0/beiingpgjagdjobbpkkilgkhmgceemde?hl=zh-CN\" class=\"button\">请安装AigotPDF客户端工具</a>');
+		log_text('<a href=\"/download/aigotpdf-3.3.3-install.exe" class=\"button\">请安装AigotPDF客户端工具</a>');
 	    }else{
 		log_text('<a href=\"https://chrome.google.com/webstore/detail/aigotpdf-%E7%94%B5%E5%AD%90%E5%8D%B0%E7%AB%A0/beiingpgjagdjobbpkkilgkhmgceemde?hl=zh-CN\" class=\"button\">请安装AigotPDF浏览器扩展</a>');
 	    }
@@ -249,6 +249,9 @@ Switch to:
   <a href="https://github.com/leoztalk/aigotpdf/wiki/demo.html">HTTP</a> | <a href="https://github.com/leoztalk/aigotpdf/wiki/demo.html">HTTPS</a>
   | <a href="okbrowser.html">browser with module</a> | <a href="nokbrowser.html">browser without module</a> | <a href="success.html">success</a>  
 </p>
+	  
+<hr>
+   <div id="log" style="white-space: pre; font-family: monospace;"></div>
 <hr>
 
    <h1>sign()</h1>
@@ -307,9 +310,6 @@ Switch to:
 
    <p><button id="click3" onclick='debug();'>Brief debug()</button></p>
 
-
-   <hr>
-   <div id="log" style="white-space: pre; font-family: monospace;"></div>
  </div>
 </body>
 </html>
