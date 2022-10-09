@@ -33,10 +33,10 @@ function getBroswerAndVersion(){//该函数可以判断各种浏览器和版本�
   var info = ""; 
   var tempArray = ""; 
   //判断浏览器版本
-  var isOpera = userAgent.indexOf("Opera") > -1; //判断是否Opera浏览器
-  var isChrome = userAgent.indexOf("Chrome") > -1 && userAgent.indexOf("Safari") > -1; //判断Chrome浏览器
-  var isIE = userAgent.indexOf("compatible") > -1 && userAgent.indexOf("MSIE") > -1 && !isOpera; //判断是否IE浏览器
   var isEdg = userAgent.toLowerCase().indexOf("edg") > -1 && userAgent.indexOf("Chrome") > -1; //判断是否Chrome的Edge浏览器
+  var isOpera = userAgent.indexOf("Opera") > -1; //判断是否Opera浏览器
+  var isChrome = userAgent.toLowerCase().indexOf("chrome") > -1 && userAgent.toLowerCase().indexOf("safari") > -1 && !isEdg; //判断Chrome浏览器
+  var isIE = userAgent.indexOf("compatible") > -1 && userAgent.indexOf("MSIE") > -1 && !isOpera; //判断是否IE浏览器
   var isEdge = userAgent.toLowerCase().indexOf("edge") > -1 && !isIE; //判断是否IE的Edge浏览器
   var isIE11 = (userAgent.toLowerCase().indexOf("trident") > -1 && userAgent.indexOf("rv") > -1); 
  
