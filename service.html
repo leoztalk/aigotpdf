@@ -143,7 +143,13 @@ function getBroswerAndVersion(){//该函数可以判断各种浏览器和版本�
 	    }else if(response==onlyextension){
 		log_text('<a href=\"/aigotpdf/download/AigotPDF-3.3.3.1-Install.zip" class=\"button\">请安装AigotPDF客户端工具</a>');
 	    }else{
-		log_text('<a href=\"https://chrome.google.com/webstore/detail/aigotpdf-%E7%94%B5%E5%AD%90%E5%8D%B0%E7%AB%A0/beiingpgjagdjobbpkkilgkhmgceemde?hl=zh-CN\" class=\"button\">请安装AigotPDF浏览器扩展</a>');
+		    	var bro = getBroswerAndVersion();//
+			if(bro=="Edge"){
+			log_text('<a href=\"https://microsoftedge.microsoft.com/addons/detail/aigotpdf-%E7%94%B5%E5%AD%90%E5%8D%B0%E7%AB%A0/agjnjpjalmcjkhidkjfibohhhbfifdfo\" target="_parent" class=\"aigotbutton1\">请安装AigotPDF浏览器扩展</a>');
+			}
+			if(bro=="Chrome"){
+			log_text('<a href=\"https://chrome.google.com/webstore/detail/aigotpdf-%E7%94%B5%E5%AD%90%E5%8D%B0%E7%AB%A0/beiingpgjagdjobbpkkilgkhmgceemde?hl=zh-CN\" class=\"button\">请安装AigotPDF浏览器扩展</a>');
+			}
 	    }
         });
     }
@@ -155,25 +161,14 @@ function getBroswerAndVersion(){//该函数可以判断各种浏览器和版本�
   <script>
 
     $(document).ready(function () {
-	
-	var bro = getBroswerAndVersion();//上面第一步封装的函数，调用会得到一个返回值
-	if(bro=="Edge"){
-		alert("Edge");
-	}
-		if(bro=="Chrome"){
-		alert("Chrome");
-	}
 		checkextension();			
     });
 	  
   </script>
 
   <div id="scripton" style="display: none">
-   <p>This is a
-   <b><script>document.write(window.location.protocol.substring(0, window.location.protocol.length-1).toUpperCase());</script></b> download page for AigotPDF 电子印章客户端工具
-</p>
+   <p>This is a download page for AigotPDF 电子印章客户端工具</p>
 
-	  
 <hr>
    <div id="log" style="white-space: pre; font-family: monospace;"></div>
 <hr>
